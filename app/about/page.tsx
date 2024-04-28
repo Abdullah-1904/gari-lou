@@ -17,10 +17,10 @@ export default function About() {
         </p>
         <p className="text-gray-500">
           For Car Renters: We offer a wide range of vehicles to suit your
-          preferences and needs. Whether you're planning a road trip, need a
-          vehicle for business, or just want to try out a different car model,
-          we've got you covered. Our user-friendly platform allows you to find
-          and book your perfect ride with just a few clicks.
+          preferences and needs. Whether you&apos;re planning a road trip, need
+          a vehicle for business, or just want to try out a different car model,
+          we&apos;ve got you covered. Our user-friendly platform allows you to
+          find and book your perfect ride with just a few clicks.
         </p>
         <p className="text-gray-500">
           For Car Owners: We provide a platform for you to monetize your idle
