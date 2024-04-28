@@ -1,7 +1,23 @@
 import Image from "next/image";
 import React from "react";
 
-const Card = ({ image, cardTitle, description, tags, badge, className }) => {
+interface CardProps {
+  image: any;
+  cardTitle: string;
+  description: string;
+  tags?: string[];
+  badge?: string;
+  className?: string;
+}
+
+const Card: React.FC<CardProps> = ({
+  image,
+  cardTitle,
+  description,
+  tags,
+  badge,
+  className,
+}) => {
   return (
     <div
       className={
@@ -20,8 +36,10 @@ const Card = ({ image, cardTitle, description, tags, badge, className }) => {
         </h2>
         <p>{description}</p>
         <div className="card-actions justify-end">
-          {tags?.map((tag) => (
-            <div className="badge badge-outline">{tag}</div>
+          {tags?.map((tag, index) => (
+            <div key={index} className="badge badge-outline">
+              {tag}
+            </div>
           ))}
         </div>
       </div>

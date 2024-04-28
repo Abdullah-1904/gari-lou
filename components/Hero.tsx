@@ -8,8 +8,8 @@ export const Hero = () => {
         backgroundImage: "url(/hero_bg.jpeg)",
       }}
     >
-      <div className="hero-overlay bg-opacity-60"></div>
-      <div className="hero-content text-center text-neutral-content">
+      <div className=" bg-opacity-60"></div>
+      <div className=" text-center text-neutral-content">
         <div className="max-w-xl">
           <h1 className="mb-5 text-5xl font-bold text-white">
             Welcome to Our Car Rental Service!
@@ -19,7 +19,7 @@ export const Hero = () => {
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
             a id nisi.
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          <button className="">Get Started</button>
         </div>
       </div>
     </div>
