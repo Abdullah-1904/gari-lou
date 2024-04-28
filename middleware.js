@@ -7,6 +7,7 @@ export default authMiddleware({
     "/contact-us",
     "/E-commerce",
     "/booking_portal",
+    "/api/handle-user",
   ],
 });
 
