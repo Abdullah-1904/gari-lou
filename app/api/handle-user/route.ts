@@ -1,8 +1,8 @@
 import type { WebhookEvent } from "@clerk/nextjs/server";
 import { supabaseServiceRole } from "../../../lib/supabase/supabaseClient";
 
-const handler = async (req, res) => {
-  const evt = req.body.evt as WebhookEvent;
+export async function POST(request: Request) {
+  const evt = (await request.json()) as WebhookEvent;
   let responseMessage = "Success";
   console.log("user", evt.data);
   try {
@@ -49,9 +49,7 @@ const handler = async (req, res) => {
         break;
     }
   } catch (err) {
-    responseMessage = `Failed: ${err.message}`;
     console.error(responseMessage);
   }
-
-  res.status(200).send(responseMessage);
-};
+  return Response.json("Successfully processed user");
+}
