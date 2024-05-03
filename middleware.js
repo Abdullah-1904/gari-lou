@@ -8,6 +8,7 @@ export default authMiddleware({
     "/E-commerce",
     "/booking_portal",
     "/api/handle-user",
+    "/api/cities",
   ],
 });
 
