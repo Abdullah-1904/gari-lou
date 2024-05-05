@@ -11,6 +11,19 @@ import {
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
 import { Delete, Eye, MoreHorizontal, PenBox } from "lucide-react";
+import { deletePosting } from "../../app/utils/function";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../ui/alert-dialog";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface IMyPost {
   name: Tables<"postings">["name"];
@@ -52,6 +65,8 @@ export const columns: ColumnDef<IMyPost>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
+      const queryClient = useQueryClient();
+
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -69,17 +84,43 @@ export const columns: ColumnDef<IMyPost>[] = [
               <Eye /> View Posting
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="flex items-center gap-2">
-              <Eye />
-              Details
-            </DropdownMenuItem>
+
             <DropdownMenuItem className="flex items-center gap-2">
               <PenBox />
               Edit
             </DropdownMenuItem>
-            <DropdownMenuItem className="flex items-center gap-2">
-              <Delete /> Delete
-            </DropdownMenuItem>
+
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <div className="flex items-center gap-2 cursor-pointer px-2 py-1.5">
+                  <Delete /> Delete
+                </div>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This action cannot be undone. This will permanently delete
+                    your account and remove your data from our servers.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction
+                    onClick={() =>
+                      deletePosting(row?.original["id"]).then(
+                        async () =>
+                          await queryClient.invalidateQueries({
+                            queryKey: ["posts"],
+                          })
+                      )
+                    }
+                  >
+                    Continue
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </DropdownMenuContent>
         </DropdownMenu>
       );

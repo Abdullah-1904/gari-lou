@@ -28,7 +28,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { City, SupabaseResponse } from "../../types/common";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -37,6 +37,7 @@ import { useAuth } from "@clerk/nextjs";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { cities } from "../../constants/data";
+import { insertPosting } from "../../app/utils/function";
 const carCategories = [
   "Sedan",
   "Coupe",
@@ -88,6 +89,8 @@ const NewPostDialog = ({ isOpen, onChange }) => {
     },
   });
 
+  // const { mutate, isLoading, isError, error, isSuccess } = useMutation((data)=>insertPosting(data))
+  // );
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     const supabase = createClient();
@@ -176,7 +179,10 @@ const NewPostDialog = ({ isOpen, onChange }) => {
   }
   return (
     <Dialog onOpenChange={onChange} open={isOpen} modal defaultOpen={isOpen}>
-      <DialogContent className="max-w-[1000px]">
+      <DialogContent
+        className="max-w-[1000px] w-[1000px]"
+        style={{ maxWidth: "1000px", width: 1000 }}
+      >
         <DialogHeader>
           <DialogTitle>Add a Posting</DialogTitle>
           <DialogDescription>
@@ -243,13 +249,11 @@ const NewPostDialog = ({ isOpen, onChange }) => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectContent>
-                            {cities?.map((c) => (
-                              <SelectItem key={c?.id} value={c?.id.toString()}>
-                                {c?.name}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
+                          {cities?.map((c) => (
+                            <SelectItem key={c?.id} value={c?.id.toString()}>
+                              {c?.name}
+                            </SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                       <FormDescription>
