@@ -36,7 +36,7 @@ import { createClient } from "../../lib/supabase/browserClient";
 import { useAuth } from "@clerk/nextjs";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
-
+import { cities } from "../../constants/data";
 const carCategories = [
   "Sedan",
   "Coupe",
@@ -61,16 +61,16 @@ const formSchema = z.object({
   category: CarCategory,
   city_id: z.string(),
   description: z.string().min(10).max(500),
-  image: z.instanceof(File).optional(),
+  // image: z.instanceof(File).optional(),
   price: z.string().min(1),
 });
 
 const NewPostDialog = ({ isOpen, onChange }) => {
-  const { data: cities, isLoading } = useQuery<SupabaseResponse<City[]>>({
-    queryKey: ["cities"],
-    queryFn: () =>
-      fetch("http://localhost:3000/api/cities").then((res) => res.json()),
-  });
+  // const { data: cities, isLoading } = useQuery<SupabaseResponse<City[]>>({
+  //   queryKey: ["cities"],
+  //   queryFn: () =>
+  //     fetch("http://localhost:3000/api/cities").then((res) => res.json()),
+  // });
 
   const { userId } = useAuth();
 
@@ -84,7 +84,7 @@ const NewPostDialog = ({ isOpen, onChange }) => {
       city_id: "1",
       description: "",
       price: "",
-      image: null,
+      // image: null,
     },
   });
 
@@ -92,65 +92,87 @@ const NewPostDialog = ({ isOpen, onChange }) => {
     console.log(values);
     const supabase = createClient();
 
-    if (values.image) {
-      const avatarFile = values.image;
-      const { data: imageData, error: imageError } = await supabase.storage
-        .from("posting-images")
-        .upload(
-          values.name?.toLowerCase()?.trim()?.replaceAll(" ", "_"),
-          avatarFile
-        );
-      if (imageError) {
-        toast("There was an error in uploading this image. Please try again.");
-        console.log(imageError);
-        return;
-      }
-      console.log(imageData);
-      const { data, error } = await supabase.from("postings").insert([
-        {
-          name: values.name,
-          category: values.category,
-          city_id: parseInt(values.city_id),
-          description: values.description,
-          is_booked: false,
-          is_available: true,
-          price: parseInt(values.price),
-          seller_id: userId,
-          image: imageData.path,
-        },
-      ]);
-      if (!error) {
-        toast("Error in creating your post!");
-      } else {
-        // queryClient.invalidateQueries(["post"]);
-        toast("Post created successfully");
-
-        // closes the modal
-        onChange(false);
-      }
+    const { data, error } = await supabase.from("postings").insert([
+      {
+        name: values.name,
+        category: values.category,
+        city_id: parseInt(values.city_id),
+        description: values.description,
+        is_booked: false,
+        is_available: true,
+        price: parseInt(values.price),
+        seller_id: userId,
+      },
+    ]);
+    if (error) {
+      toast("Error in creating your post!");
     } else {
-      const { data, error } = await supabase.from("postings").insert([
-        {
-          name: values.name,
-          category: values.category,
-          city_id: parseInt(values.city_id),
-          description: values.description,
-          is_booked: false,
-          is_available: true,
-          price: parseInt(values.price),
-          seller_id: userId,
-        },
-      ]);
-      if (!error) {
-        toast("Error in creating your post!");
-      } else {
-        // queryClient.invalidateQueries(["post"]);
-        toast("Post created successfully");
+      await queryClient.invalidateQueries({ queryKey: ["posts"] });
+      toast("Post created successfully");
 
-        // closes the modal
-        onChange(false);
-      }
+      // closes the modal
+      onChange(false);
     }
+
+    // if (values.image) {
+    //   const avatarFile = values.image;
+    //   const { data: imageData, error: imageError } = await supabase.storage
+    //     .from("posting-images")
+    //     .upload(
+    //       values.name?.toLowerCase()?.trim()?.replaceAll(" ", "_"),
+    //       avatarFile
+    //     );
+    //   if (imageError) {
+    //     toast("There was an error in uploading this image. Please try again.");
+    //     console.log(imageError);
+    //     return;
+    //   }
+    //   console.log(imageData);
+    //   const { data, error } = await supabase.from("postings").insert([
+    //     {
+    //       name: values.name,
+    //       category: values.category,
+    //       city_id: parseInt(values.city_id),
+    //       description: values.description,
+    //       is_booked: false,
+    //       is_available: true,
+    //       price: parseInt(values.price),
+    //       seller_id: userId,
+    //       image: imageData.path,
+    //     },
+    //   ]);
+    //   if (!error) {
+    //     toast("Error in creating your post!");
+    //   } else {
+    //     // queryClient.invalidateQueries(["post"]);
+    //     toast("Post created successfully");
+
+    //     // closes the modal
+    //     onChange(false);
+    //   }
+    // } else {
+    //   const { data, error } = await supabase.from("postings").insert([
+    //     {
+    //       name: values.name,
+    //       category: values.category,
+    //       city_id: parseInt(values.city_id),
+    //       description: values.description,
+    //       is_booked: false,
+    //       is_available: true,
+    //       price: parseInt(values.price),
+    //       seller_id: userId,
+    //     },
+    //   ]);
+    //   if (!error) {
+    //     toast("Error in creating your post!");
+    //   } else {
+    //     // queryClient.invalidateQueries(["post"]);
+    //     toast("Post created successfully");
+
+    //     // closes the modal
+    //     onChange(false);
+    //   }
+    // }
   }
   return (
     <Dialog onOpenChange={onChange} open={isOpen} modal defaultOpen={isOpen}>
@@ -212,7 +234,7 @@ const NewPostDialog = ({ isOpen, onChange }) => {
                       <FormLabel>City</FormLabel>
                       <Select
                         onValueChange={field.onChange}
-                        disabled={isLoading}
+                        // disabled={isLoading}
                         defaultValue={field.value}
                       >
                         <FormControl>
@@ -222,7 +244,7 @@ const NewPostDialog = ({ isOpen, onChange }) => {
                         </FormControl>
                         <SelectContent>
                           <SelectContent>
-                            {cities?.data?.map((c) => (
+                            {cities?.map((c) => (
                               <SelectItem key={c?.id} value={c?.id.toString()}>
                                 {c?.name}
                               </SelectItem>
@@ -270,7 +292,7 @@ const NewPostDialog = ({ isOpen, onChange }) => {
               </div>
             </div>
             <div className="col-span-1 space-y-2">
-              <FormField
+              {/* <FormField
                 control={form.control}
                 name="image"
                 render={({ field: { value, onChange, ...fieldProps } }) => (
@@ -284,7 +306,7 @@ const NewPostDialog = ({ isOpen, onChange }) => {
                     placeholder="Choose Image"
                   />
                 )}
-              />
+              /> */}
               <FormDescription>Upload your image</FormDescription>
               <FormMessage />
               <FormField

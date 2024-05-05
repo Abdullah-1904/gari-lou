@@ -34,7 +34,7 @@ const MyPostings = () => {
     error,
     isLoading,
   } = useQuery({
-    queryKey: ["post"],
+    queryKey: ["posts"],
     queryFn: () => fetchPosts(userId),
   });
 

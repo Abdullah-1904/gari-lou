@@ -1,6 +1,14 @@
+"use client";
+import { useAuth } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 import React from "react";
 
 export default function About() {
+  const { sessionId } = useAuth();
+
+  if (sessionId) {
+    redirect("/dashboard");
+  }
   return (
     <div className="min-h-screen">
       <h1 className="text-6xl font-bold mt-8">About</h1>

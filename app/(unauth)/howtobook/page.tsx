@@ -1,7 +1,15 @@
+"use client";
+import { useAuth } from "@clerk/nextjs";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 import React from "react";
 
 const Page = () => {
+  const { sessionId } = useAuth();
+
+  if (sessionId) {
+    redirect("/dashboard");
+  }
   return (
     <>
       <div className="flex flex-col items-center justify-center space-y-4 p-4">
