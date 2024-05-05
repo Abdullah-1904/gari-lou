@@ -16,23 +16,20 @@ import { Badge } from "./ui/badge";
 const cards = [
   {
     image: CarRecommendations,
-    cardTitle: "Best car recommendations",
-    description:
-      "LoreAute est anim labore pariatur ea nostrud proident. Eu amet Lorem laboris anim amet aliqua labore. Eiusmod consequat aliqua irure incididunt et ea. Ea elit anim aliqua ipsum dolor velit cupidatat dolor cupidatat consectetur incididunt consequat aute.",
+    cardTitle: "Best Car recommendations",
+    description: "We provide you with the eye catching web application",
     tags: ["Fast", "Accurate", "Reliable"],
   },
   {
     image: CarListing,
     cardTitle: "The most complete list of cars",
-    description:
-      "LoreAute est anim labore pariatur ea nostrud proident. Eu amet Lorem laboris anim amet aliqua labore. Eiusmod consequat aliqua irure incididunt et ea. Ea elit anim aliqua ipsum dolor velit cupidatat dolor cupidatat consectetur incididunt consequat aute.",
+    description: "add bullshit here",
     tags: ["Complete", "Accurate", "Extensive"],
   },
   {
     image: CarRent,
     cardTitle: "Rent your car out!",
-    description:
-      "LoreAute est anim labore pariatur ea nostrud proident. Eu amet Lorem laboris anim amet aliqua labore. Eiusmod consequat aliqua irure incididunt et ea. Ea elit anim aliqua ipsum dolor velit cupidatat dolor cupidatat consectetur incididunt consequat aute.",
+    description: "add bullshit here",
     tags: ["Safe", "Secure", "Hassle free"],
   },
 ];

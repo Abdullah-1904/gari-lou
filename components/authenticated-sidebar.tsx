@@ -81,14 +81,26 @@ const AuthenticatedSidebar = () => {
           My Bookings
         </MenuItem>
 
-        <MenuItem
+        {/* <MenuItem
           icon={<LogOut />}
           onClick={() => {
             // Sign out and redirect
-            SignOutButton({ signOutCallback: () => router.push("/") });
+            SignOutButton({ signOutCallback: () => router.push("../") });
           }}
         >
           Log out
+        </MenuItem> */}
+
+        <MenuItem
+          icon={<LogOut />}
+          onClick={() => {
+            // Assuming SignOutButton handles the sign-out process
+            // Redirect should be set as a callback after successful sign out
+            router.push("../"); // Adjust this path according to your routing setup
+          }}
+        >
+          <SignOutButton signOutCallback={() => router.push("../")} />{" "}
+          {/* Render the button here */}
         </MenuItem>
       </Menu>
     </Sidebar>

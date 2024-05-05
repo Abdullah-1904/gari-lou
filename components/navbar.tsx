@@ -29,8 +29,8 @@ const Navbar = () => {
       {!sessionId && (
         <div className="flex items-center justify-start gap-4">
           <Link href="/about">About</Link>
-          <Link href="/E-commerce">E-Commerce</Link>
-          <Link href="/booking_portal">Book your car</Link>
+          <Link href="https://8c0061-06.myshopify.com/">E-Commerce</Link>
+          <Link href="/howtobook">Guide</Link>
           <Link href="/booking_portal"></Link>
         </div>
       )}

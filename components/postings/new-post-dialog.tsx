@@ -285,7 +285,7 @@ const NewPostDialog = ({ isOpen, onChange }) => {
                   />
                 )}
               />
-              <FormDescription>Upload you image</FormDescription>
+              <FormDescription>Upload your image</FormDescription>
               <FormMessage />
               <FormField
                 control={form.control}

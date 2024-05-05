@@ -4,6 +4,7 @@ export default authMiddleware({
   publicRoutes: [
     "/",
     "/about",
+    "/howtobook",
     "/contact-us",
     "/E-commerce",
     "/booking_portal",
