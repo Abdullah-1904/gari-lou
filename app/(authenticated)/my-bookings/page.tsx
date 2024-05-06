@@ -18,58 +18,48 @@ import {
 } from "../../../components/ui/select";
 import { Input } from "../../../components/ui/input";
 import { Button } from "../../../components/ui/button";
+import { createClient } from "../../../lib/supabase/browserClient";
+import { QueryData } from "@supabase/supabase-js";
+import { useAuth } from "@clerk/nextjs";
+import { useQuery } from "@tanstack/react-query";
+import MyPostingsTable from "../../../components/postings/my-postings-table";
+import { columns, IMyBooking } from "./components/columns";
+import { ApiResponse } from "../../../types/common";
+import { Tables } from "../../../database.types";
 
-const My_bookings = () => {
+const supabase = createClient();
+
+const MyBookings = () => {
+  const {
+    data: bookings,
+    error,
+    isLoading,
+  } = useQuery<ApiResponse<IMyBooking[]>>({
+    queryKey: ["bookings"],
+    queryFn: () =>
+      fetch("http://localhost:3000/api/bookings").then((res) => res.json()),
+  });
+
   return (
-    <div className="flex item-center flex-wrap gap-6">
-      <Card className="w-[350px]">
-        <CardHeader>
-          <CardTitle>Name of the car</CardTitle>
-          <CardDescription>Description</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form>
-            <div className="grid w-full items-center gap-4">
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="car">Car</Label>
-                <Input id="car" placeholder="Car model" />
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="category">Car Category</Label>
-                <Input id="category" placeholder="Car Category" />
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="Location">City located</Label>
-                <Input id="Location" placeholder="Car Location" />
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="img">Image</Label>
-                <Input id="img" placeholder="Car image" />
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="framework">Framework</Label>
-                <Select>
-                  <SelectTrigger id="framework">
-                    <SelectValue placeholder="Select" />
-                  </SelectTrigger>
-                  <SelectContent position="popper">
-                    <SelectItem value="next">Next.js</SelectItem>
-                    <SelectItem value="sveltekit">SvelteKit</SelectItem>
-                    <SelectItem value="astro">Astro</SelectItem>
-                    <SelectItem value="nuxt">Nuxt.js</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-          </form>
-        </CardContent>
-        <CardFooter className="flex justify-center">
-          {/* <Button variant="outline">Cancel</Button> */}
-          <Button>Book this car</Button>
-        </CardFooter>
-      </Card>
+    <div className="">
+      <div className="flex justify-between items-center">
+        <h2 className="text-3xl font-bold tracking-tight">My Bookings</h2>
+      </div>
+      {/* Will display all of my postings */}
+      <div className="py-10">
+        <p className="mb-6">
+          The following are requests made for all your posts.
+        </p>
+        {
+          <MyPostingsTable
+            columns={columns}
+            isLoading={isLoading}
+            data={bookings?.data ?? []}
+          />
+        }
+      </div>
     </div>
   );
 };
 
-export default My_bookings;
+export default MyBookings;

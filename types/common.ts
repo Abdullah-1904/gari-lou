@@ -23,3 +23,11 @@ export interface IRespondBooking {
   to: string;
   status: Tables<"bookings">["status"];
 }
+
+export interface ApiResponse<T> {
+  data: T;
+}
+
+export interface DatabaseUser {
+  email: Tables<"user">["email"];
+}

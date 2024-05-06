@@ -14,15 +14,18 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { LoaderCircleIcon } from "lucide-react";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  isLoading: boolean;
 }
 
 export function MyPostingsTable<TData, TValue>({
   columns,
   data,
+  isLoading,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -52,12 +55,19 @@ export function MyPostingsTable<TData, TValue>({
           ))}
         </TableHeader>
         <TableBody>
-          {table?.getRowModel()?.rows?.length ? (
+          {table && isLoading ? (
+            <TableRow>
+              <TableCell
+                colSpan={columns.length}
+                className="h-24 w-full text-center">
+                <LoaderCircleIcon className="animate-spin mx-auto" />
+              </TableCell>
+            </TableRow>
+          ) : table?.getRowModel()?.rows?.length ? (
             table?.getRowModel()?.rows?.map((row) => (
               <TableRow
                 key={row.id}
-                data-state={row.getIsSelected() && "selected"}
-              >
+                data-state={row.getIsSelected() && "selected"}>
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

@@ -4,6 +4,7 @@ import Navbar from "../../components/navbar";
 import AuthenticatedSidebar from "../../components/authenticated-sidebar";
 import { ReactQueryProvider } from "../../lib/query-client-provider";
 import { Toaster } from "../../components/ui/toaster";
+import { Toaster as SonnerToaster } from "../../components/ui/sonner";
 import { UserButton } from "@clerk/nextjs";
 
 const AuthenticatedLayout = ({ children }) => {
@@ -12,6 +13,7 @@ const AuthenticatedLayout = ({ children }) => {
       <ReactQueryProvider>
         <section className="flex">
           <Toaster />
+          <SonnerToaster />
           <AuthenticatedSidebar />
 
           <main className="flex-grow overflow-y-auto">

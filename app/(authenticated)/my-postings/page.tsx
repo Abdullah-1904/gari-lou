@@ -41,7 +41,7 @@ const MyPostings = () => {
   return (
     <div>
       <div className="flex justify-between items-center">
-        <h1 className="text-4xl font-medium">My Postings</h1>
+        <h2 className="text-3xl font-bold tracking-tight">My Postings</h2>
         <Button onClick={() => setIsNewPostModalOpen(true)}>
           <Plus />
           New Posting
@@ -52,18 +52,23 @@ const MyPostings = () => {
         <p className="mb-6">
           The following are all your postings, you can edit delete them.
         </p>
-        {!isLoading && (
+        {
           <MyPostingsTable
             columns={columns}
-            data={posts?.map((post) => {
-              const city = cities.find((c) => c.id === post.city_id);
-              return {
-                ...post,
-                city: city?.name,
-              };
-            })}
+            isLoading={isLoading}
+            data={
+              posts
+                ? posts?.map((post) => {
+                    const city = cities.find((c) => c.id === post.city_id);
+                    return {
+                      ...post,
+                      city: city?.name,
+                    };
+                  })
+                : []
+            }
           />
-        )}
+        }
       </div>
       <NewPostDialog
         isOpen={isNewPostModalOpen}

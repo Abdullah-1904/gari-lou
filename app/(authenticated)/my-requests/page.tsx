@@ -17,13 +17,13 @@ const fetchRequests = async (user_id: string) => {
     .select(
       `
       *,
-      postings:post_id (
+      posting:post_id (
         id,
         seller_id
       )
     `
     ) // Joining with postings table on post_id
-    .eq("postings.seller_id", user_id); // Filtering based on seller_id in the postings table
+    .eq("seller_id", user_id); // Filtering based on seller_id in the postings table
 
   if (error) {
     console.error("Error fetching data:", error);
@@ -47,22 +47,30 @@ const MyRequests = () => {
   return (
     <div>
       <div className="flex justify-between items-center">
-        <h1 className="text-4xl font-medium">My Requests</h1>
+        <h2 className="text-3xl font-bold tracking-tight">My Requests</h2>
       </div>
       {/* Will display all of my postings */}
       <div className="py-10">
         <p className="mb-6">
           The following are requests made for all your posts.
         </p>
-        {!isLoading && (
+        {
           <MyPostingsTable
+            isLoading={isLoading}
             columns={columns}
-            data={requests?.map((request) => {})}
+            data={requests ?? []}
           />
-        )}
+        }
       </div>
     </div>
   );
 };
 
 export default MyRequests;
+
+/**
+ * ?.map((request) => ({
+              request_from_id: request.request_from_id,
+              
+            }))
+ */

@@ -65,6 +65,7 @@ export const columns: ColumnDef<IMyPost>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       const queryClient = useQueryClient();
 
       return (
