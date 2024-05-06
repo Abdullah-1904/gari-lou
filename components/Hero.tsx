@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "./ui/button";
 
 export const Hero = () => {
   return (
@@ -19,9 +20,7 @@ export const Hero = () => {
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
             a id nisi.
           </p>
-          <button className="bg-slate-700" style={{ color: "red" }}>
-            Get Started
-          </button>
+          <Button>Get Started!</Button>
         </div>
       </div>
     </div>

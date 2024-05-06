@@ -19,10 +19,11 @@ export interface ICreateNewBooking {
 }
 
 export interface IRespondBooking {
-  request_id_from: string;
+  request_id: number;
+  seller_id: string;
+  buyer_id: string;
+  action: "accepted" | "rejected";
   post_id: number;
-  to: string;
-  status: Tables<"bookings">["status"];
 }
 
 export interface ApiResponse<T> {

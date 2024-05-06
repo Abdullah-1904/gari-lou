@@ -14,6 +14,7 @@ import { Badge } from "./ui/badge";
 import { cities } from "../constants/data";
 import Image from "next/image";
 import LogoTempImage from "../public/car_listing.png";
+import { cn } from "../lib/utils";
 
 interface IPostCard {
   post: Tables<"postings">;
@@ -23,7 +24,11 @@ interface IPostCard {
 const PostCard: React.FC<IPostCard> = (props: IPostCard) => {
   const city = cities.find((c) => c.id === props?.post?.city_id);
   return (
-    <Card className="col-span-1">
+    <Card
+      className={cn(
+        "col-span-1",
+        props?.post?.is_booked ? "bg-secondary text-foreground" : ""
+      )}>
       <CardHeader>
         <Image className="w-full object-cover" alt={""} src={LogoTempImage} />
         {/* <Image
@@ -43,7 +48,10 @@ const PostCard: React.FC<IPostCard> = (props: IPostCard) => {
       </CardHeader>
       <CardContent>{props?.post?.description}</CardContent>
       <CardFooter className="flex justify-end">
-        <Button variant="outline" onClick={props.handleModal}>
+        <Button
+          variant="outline"
+          disabled={props?.post?.is_booked}
+          onClick={props.handleModal}>
           Book this car!
         </Button>
       </CardFooter>

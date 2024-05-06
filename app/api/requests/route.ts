@@ -20,6 +20,7 @@ export async function GET(request: Request) {
         name,
         category,
         city_id,
+        is_booked
       ),
       user:seller_id (
         email
@@ -32,10 +33,11 @@ export async function GET(request: Request) {
   const { data, error } = await requestsQuery;
 
   if (error) {
+    console.log(error);
     return Response.json({
       error: true,
       status: 500,
-      message: "Error in fetching bookings.",
+      message: "Error in fetching requests.",
     });
   }
   return Response.json({ data });

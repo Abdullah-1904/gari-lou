@@ -66,7 +66,7 @@ export const columns: ColumnDef<IMyPost>[] = [
     id: "actions",
     cell: ({ row }) => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      const queryClient = useQueryClient();
+      // const queryClient = useQueryClient();
 
       return (
         <DropdownMenu>
@@ -78,23 +78,20 @@ export const columns: ColumnDef<IMyPost>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              className="flex items-center gap-2"
-              //   onClick={() => navigator.clipboard.writeText(payment.id)}
-            >
-              <Eye /> View Posting
+            <DropdownMenuItem className="flex items-center gap-2">
+              <Eye className="h-4 w-4" /> View Posting
             </DropdownMenuItem>
             <DropdownMenuSeparator />
 
             <DropdownMenuItem className="flex items-center gap-2">
-              <PenBox />
+              <PenBox className="h-4 w-4" />
               Edit
             </DropdownMenuItem>
 
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <div className="flex items-center gap-2 cursor-pointer px-2 py-1.5">
-                  <Delete /> Delete
+                <div className="flex items-center gap-2 text-sm cursor-pointer px-2 py-1.5">
+                  <Delete className="h-4 w-4" /> Delete
                 </div>
               </AlertDialogTrigger>
               <AlertDialogContent>
@@ -110,13 +107,12 @@ export const columns: ColumnDef<IMyPost>[] = [
                   <AlertDialogAction
                     onClick={() =>
                       deletePosting(row?.original["id"]).then(
-                        async () =>
-                          await queryClient.invalidateQueries({
-                            queryKey: ["posts"],
-                          })
+                        async () => {}
+                        // await queryClient.invalidateQueries({
+                        //   queryKey: ["posts"],
+                        // })
                       )
-                    }
-                  >
+                    }>
                     Continue
                   </AlertDialogAction>
                 </AlertDialogFooter>

@@ -27,3 +27,4 @@ export const deletePosting = async (post_id: number) => {
   //   if (error) throw new Error(error.message);
   return data;
 };
+

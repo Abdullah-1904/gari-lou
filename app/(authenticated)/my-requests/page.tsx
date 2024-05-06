@@ -4,23 +4,37 @@ import { Button } from "../../../components/ui/button";
 import { Plus } from "lucide-react";
 import MyPostingsTable from "../../../components/postings/my-postings-table";
 import { createClient } from "../../../lib/supabase/browserClient";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { cities } from "../../../constants/data";
 import { useAuth } from "@clerk/nextjs";
-import { columns } from "./components/columns";
+import { getCols, IMyRequest } from "./components/columns";
+import { ApiResponse, IRespondBooking } from "../../../types/common";
+import { toast } from "../../../components/ui/use-toast";
 
 const supabase = createClient();
 
 const MyRequests = () => {
-  const { userId } = useAuth();
   const {
     data: requests,
     error,
     isLoading,
-  } = useQuery({
+  } = useQuery<ApiResponse<IMyRequest[]>>({
     queryKey: ["requests"],
     queryFn: () =>
       fetch("http://localhost:3000/api/requests").then((res) => res.json()),
+  });
+  const queryClient = useQueryClient();
+
+  const respondBookingMutation = useMutation({
+    mutationFn: (respondBooking: IRespondBooking) => {
+      return fetch("http://localhost:3000/api/respond-booking", {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(respondBooking),
+      });
+    },
   });
 
   return (
@@ -36,8 +50,31 @@ const MyRequests = () => {
         {
           <MyPostingsTable
             isLoading={isLoading}
-            columns={columns}
-            data={requests ?? []}
+            columns={getCols({
+              respondToBooking: async (respondBooking: IRespondBooking) => {
+                respondBookingMutation.mutate(
+                  {
+                    ...respondBooking,
+                  },
+                  {
+                    onSuccess: async () => {
+                      toast({
+                        title: `Request was succesfully ${respondBooking?.action}`,
+                      });
+                      await queryClient.invalidateQueries({
+                        queryKey: ["requests"],
+                      });
+                    },
+                    onError: () =>
+                      toast({
+                        title:
+                          "There was an error in responding to the request!",
+                      }),
+                  }
+                );
+              },
+            })}
+            data={requests?.data ?? []}
           />
         }
       </div>
@@ -46,10 +83,3 @@ const MyRequests = () => {
 };
 
 export default MyRequests;
-
-/**
- * ?.map((request) => ({
-              request_from_id: request.request_from_id,
-              
-            }))
- */

@@ -1,5 +1,4 @@
 import React from "react";
-// import Footer from "../../components/Footer";
 import Navbar from "../../components/navbar";
 import AuthenticatedSidebar from "../../components/authenticated-sidebar";
 import { ReactQueryProvider } from "../../lib/query-client-provider";
