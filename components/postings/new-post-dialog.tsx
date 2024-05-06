@@ -66,7 +66,13 @@ const formSchema = z.object({
   price: z.string().min(1),
 });
 
-const NewPostDialog = ({ isOpen, onChange }) => {
+const NewPostDialog = ({
+  isOpen,
+  onChange,
+}: {
+  isOpen: boolean;
+  onChange: (val: boolean) => void;
+}) => {
   // const { data: cities, isLoading } = useQuery<SupabaseResponse<City[]>>({
   //   queryKey: ["cities"],
   //   queryFn: () =>
@@ -181,8 +187,7 @@ const NewPostDialog = ({ isOpen, onChange }) => {
     <Dialog onOpenChange={onChange} open={isOpen} modal defaultOpen={isOpen}>
       <DialogContent
         className="max-w-[1000px] w-[1000px]"
-        style={{ maxWidth: "1000px", width: 1000 }}
-      >
+        style={{ maxWidth: "1000px", width: 1000 }}>
         <DialogHeader>
           <DialogTitle>Add a Posting</DialogTitle>
           <DialogDescription>
@@ -192,8 +197,7 @@ const NewPostDialog = ({ isOpen, onChange }) => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="grid grid-cols-2 gap-4"
-          >
+            className="grid grid-cols-2 gap-4">
             <div className="col-span-1">
               <div className="grid grid-cols-2 gap-4">
                 <FormField
@@ -241,8 +245,7 @@ const NewPostDialog = ({ isOpen, onChange }) => {
                       <Select
                         onValueChange={field.onChange}
                         // disabled={isLoading}
-                        defaultValue={field.value}
-                      >
+                        defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder="Select City" />
@@ -271,8 +274,7 @@ const NewPostDialog = ({ isOpen, onChange }) => {
                       <FormLabel>Category</FormLabel>
                       <Select
                         onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
+                        defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder="Select car category" />

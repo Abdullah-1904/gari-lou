@@ -1,3 +1,5 @@
+import { Tables } from "../database.types";
+
 export interface City {
   id: number;
   created_at: string;
@@ -6,4 +8,18 @@ export interface City {
 
 export interface SupabaseResponse<T> {
   data: T;
+}
+
+export interface ICreateNewBooking {
+  request_id_from: string;
+  post_id: number;
+  to: string;
+  from: string;
+}
+
+export interface IRespondBooking {
+  request_id_from: string;
+  post_id: number;
+  to: string;
+  status: Tables<"bookings">["status"];
 }

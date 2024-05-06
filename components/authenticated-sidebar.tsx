@@ -80,6 +80,12 @@ const AuthenticatedSidebar = () => {
         >
           My Bookings
         </MenuItem>
+        <MenuItem
+          icon={<ShoppingBasket />}
+          onClick={() => handleNavigation("/my-requests")}
+        >
+          My Requests
+        </MenuItem>
 
         {/* <MenuItem
           icon={<LogOut />}

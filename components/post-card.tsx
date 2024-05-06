@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Button } from "./ui/button";
 import {
@@ -11,27 +12,40 @@ import {
 import { Tables } from "../database.types";
 import { Badge } from "./ui/badge";
 import { cities } from "../constants/data";
+import Image from "next/image";
+import LogoTempImage from "../public/car_listing.png";
 
-const PostCard: React.FC<Tables<"postings">> = (props) => {
-  const city = cities.find((c) => c.id === props?.city_id);
+interface IPostCard {
+  post: Tables<"postings">;
+  handleModal: () => void;
+}
+
+const PostCard: React.FC<IPostCard> = (props: IPostCard) => {
+  const city = cities.find((c) => c.id === props?.post?.city_id);
   return (
     <Card className="col-span-1">
       <CardHeader>
-        <img className="w-full object-cover" src="./car_listing.png" />
-        {/* <img className="w-full object-cover" src={props?.image} /> */}
+        <Image className="w-full object-cover" alt={""} src={LogoTempImage} />
+        {/* <Image
+          className="w-full object-cover"
+          alt={""}
+          src={props?.image}
+        /> */}
       </CardHeader>
       <CardHeader>
-        <CardTitle>{props?.name}</CardTitle>
+        <CardTitle>{props?.post?.name}</CardTitle>
         <CardDescription>
           <div className="flex flex-wrap items-center justify-start gap-2">
-            <Badge>{props?.category}</Badge>
+            <Badge>{props?.post?.category as string}</Badge>
             <Badge>{city?.name}</Badge>
           </div>
         </CardDescription>
       </CardHeader>
-      <CardContent>{props?.description}</CardContent>
+      <CardContent>{props?.post?.description}</CardContent>
       <CardFooter className="flex justify-end">
-        <Button className="text-secondary-foreground bg-secondary">Book</Button>
+        <Button variant="outline" onClick={props.handleModal}>
+          Book this car!
+        </Button>
       </CardFooter>
     </Card>
   );
