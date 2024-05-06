@@ -89,6 +89,7 @@ const CreateBookingModal: React.FC<ICreateBookingModal> = ({
         to: data?.to.toISOString(),
         post_id: modalState?.post?.id,
         request_id_from: userId,
+        seller_id: modalState?.post?.seller_id,
       },
       {
         onSuccess: () => {
