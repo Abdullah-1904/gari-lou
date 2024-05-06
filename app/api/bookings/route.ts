@@ -15,6 +15,7 @@ export async function POST(request: Request) {
     {
       request_from_id: res.request_id_from,
       post_id: res.post_id,
+      seller_id: res.seller_id,
     },
   ]);
 

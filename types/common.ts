@@ -13,6 +13,7 @@ export interface SupabaseResponse<T> {
 export interface ICreateNewBooking {
   request_id_from: string;
   post_id: number;
+  seller_id: string;
   to: string;
   from: string;
 }

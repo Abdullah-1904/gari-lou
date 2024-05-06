@@ -3,6 +3,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Tables } from "../../../../database.types";
 import { Button } from "../../../../components/ui/button";
 import { useQueryClient } from "@tanstack/react-query";
+import { formartDate } from "../../../../lib/utils";
 
 interface IMyRequest {
   // offer: Tables<"requests">["offer"];
@@ -27,7 +28,7 @@ export const columns: ColumnDef<IMyRequest>[] = [
     accessorKey: "created_at",
     header: "Initiated at",
     cell: ({ row }) => {
-      return <div className="">{row.getValue("created_at")}</div>;
+      return <div className="">{formartDate(row?.original?.["created_at"])}</div>;
     },
   },
   {

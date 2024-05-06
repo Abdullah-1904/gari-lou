@@ -11,28 +11,6 @@ import { columns } from "./components/columns";
 
 const supabase = createClient();
 
-const fetchRequests = async (user_id: string) => {
-  const { data, error } = await supabase
-    .from("requests")
-    .select(
-      `
-      *,
-      posting:post_id (
-        id,
-        seller_id
-      )
-    `
-    ) // Joining with postings table on post_id
-    .eq("seller_id", user_id); // Filtering based on seller_id in the postings table
-
-  if (error) {
-    console.error("Error fetching data:", error);
-    return null;
-  }
-
-  return data;
-};
-
 const MyRequests = () => {
   const { userId } = useAuth();
   const {
@@ -41,7 +19,8 @@ const MyRequests = () => {
     isLoading,
   } = useQuery({
     queryKey: ["requests"],
-    queryFn: () => fetchRequests(userId),
+    queryFn: () =>
+      fetch("http://localhost:3000/api/requests").then((res) => res.json()),
   });
 
   return (

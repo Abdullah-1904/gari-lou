@@ -32,7 +32,7 @@ import { DatabaseUser } from "../../../../types/common";
 import { cities } from "../../../../constants/data";
 import { ReactNode } from "react";
 import { Badge } from "../../../../components/ui/badge";
-import { cn } from "../../../../lib/utils";
+import { cn, formartDate } from "../../../../lib/utils";
 import { toast } from "sonner";
 
 export interface IMyBooking extends Tables<"bookings"> {
@@ -48,16 +48,6 @@ export interface IMyBooking extends Tables<"bookings"> {
   user: DatabaseUser;
 }
 
-const formartDate = (date_string: string) => {
-  const date = new Date(date_string);
-  const options: Intl.DateTimeFormatOptions = {
-    weekday: "short",
-    day: "numeric", // Add day field
-    month: "long",
-    year: "numeric",
-  };
-  return new Intl.DateTimeFormat("en-US", options).format(date);
-};
 
 export const columns: ColumnDef<IMyBooking>[] = [
   {
