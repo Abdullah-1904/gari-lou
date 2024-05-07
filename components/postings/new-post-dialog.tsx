@@ -187,7 +187,8 @@ const NewPostDialog = ({
     <Dialog onOpenChange={onChange} open={isOpen} modal defaultOpen={isOpen}>
       <DialogContent
         className="max-w-[1000px] w-[1000px]"
-        style={{ maxWidth: "1000px", width: 1000 }}>
+        style={{ maxWidth: "1000px", width: 1000 }}
+      >
         <DialogHeader>
           <DialogTitle>Add a Posting</DialogTitle>
           <DialogDescription>
@@ -197,7 +198,8 @@ const NewPostDialog = ({
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="grid grid-cols-2 gap-4">
+            className="grid grid-cols-2 gap-4"
+          >
             <div className="col-span-1">
               <div className="grid grid-cols-2 gap-4">
                 <FormField
@@ -205,11 +207,13 @@ const NewPostDialog = ({
                   name="name"
                   render={({ field }) => (
                     <FormItem className="col-span-1">
-                      <FormLabel>Name</FormLabel>
+                      <FormLabel>Car Model</FormLabel>
                       <FormControl>
                         <Input placeholder="Mehran" {...field} />
                       </FormControl>
-                      <FormDescription>Name of your car</FormDescription>
+                      <FormDescription>
+                        Car Model like Corolla | Civic
+                      </FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -219,7 +223,7 @@ const NewPostDialog = ({
                   name="price"
                   render={({ field }) => (
                     <FormItem className="col-span-1">
-                      <FormLabel>Price</FormLabel>
+                      <FormLabel>Price / Day</FormLabel>
                       <FormControl>
                         <Input
                           type="number"
@@ -228,7 +232,7 @@ const NewPostDialog = ({
                         />
                       </FormControl>
                       <FormDescription>
-                        Price of your car in Ruppees
+                        Price per day in Ruppees PKR
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -245,7 +249,8 @@ const NewPostDialog = ({
                       <Select
                         onValueChange={field.onChange}
                         // disabled={isLoading}
-                        defaultValue={field.value}>
+                        defaultValue={field.value}
+                      >
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder="Select City" />
@@ -274,7 +279,8 @@ const NewPostDialog = ({
                       <FormLabel>Category</FormLabel>
                       <Select
                         onValueChange={field.onChange}
-                        defaultValue={field.value}>
+                        defaultValue={field.value}
+                      >
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder="Select car category" />
@@ -313,7 +319,7 @@ const NewPostDialog = ({
                   />
                 )}
               /> */}
-              <FormDescription>Upload your image</FormDescription>
+              {/* <FormDescription>Upload your image</FormDescription> */}
               <FormMessage />
               <FormField
                 control={form.control}

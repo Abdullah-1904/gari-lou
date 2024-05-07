@@ -28,7 +28,8 @@ const PostCard: React.FC<IPostCard> = (props: IPostCard) => {
       className={cn(
         "col-span-1",
         props?.post?.is_booked ? "bg-secondary text-foreground" : ""
-      )}>
+      )}
+    >
       <CardHeader>
         <Image className="w-full object-cover" alt={""} src={LogoTempImage} />
         {/* <Image
@@ -42,7 +43,9 @@ const PostCard: React.FC<IPostCard> = (props: IPostCard) => {
         <CardDescription>
           <div className="flex flex-wrap items-center justify-start gap-2">
             <Badge>{props?.post?.category as string}</Badge>
+            <Badge>{props?.post?.price + " / Day"}</Badge>
             <Badge>{city?.name}</Badge>
+            {/* <Badge>{price?.name}</Badge> */}
           </div>
         </CardDescription>
       </CardHeader>
@@ -51,7 +54,8 @@ const PostCard: React.FC<IPostCard> = (props: IPostCard) => {
         <Button
           variant="outline"
           disabled={props?.post?.is_booked}
-          onClick={props.handleModal}>
+          onClick={props.handleModal}
+        >
           Book this car!
         </Button>
       </CardFooter>
