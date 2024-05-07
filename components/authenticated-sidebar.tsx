@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import {
   Carrot,
+  CircleFadingPlus,
+  GitPullRequest,
   Home,
   LayoutDashboard,
   LogOut,
@@ -63,7 +65,7 @@ const AuthenticatedSidebar = () => {
           Dashboard
         </MenuItem>
         <MenuItem
-          icon={<Carrot />}
+          icon={<CircleFadingPlus />}
           onClick={() => handleNavigation("/booking-portal")}
         >
           Booking Portal
@@ -81,7 +83,7 @@ const AuthenticatedSidebar = () => {
           My Bookings
         </MenuItem>
         <MenuItem
-          icon={<ShoppingBasket />}
+          icon={<GitPullRequest />}
           onClick={() => handleNavigation("/my-requests")}
         >
           My Requests
