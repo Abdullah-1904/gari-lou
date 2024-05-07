@@ -35,7 +35,7 @@ export async function PUT(request: Request) {
   const updatePostings = supabaseServiceRole
     .from("postings")
     .update({
-      is_booked: true,
+      is_booked: res?.action === "accepted",
     })
     .eq("id", res?.post_id);
 

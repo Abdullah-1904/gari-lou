@@ -22,7 +22,7 @@ export async function GET(request: Request) {
         city_id,
         is_booked
       ),
-      user:seller_id (
+      user:request_from_id (
         email
       )
     `
