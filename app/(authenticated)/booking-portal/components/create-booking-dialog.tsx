@@ -72,13 +72,17 @@ const CreateBookingModal: React.FC<ICreateBookingModal> = ({
 
   const bookingMutation = useMutation({
     mutationFn: (newBooking: ICreateNewBooking) => {
-      return fetch("http://localhost:3000/api/bookings", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(newBooking),
-      });
+      return fetch(
+        (process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000") +
+          "/api/bookings",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(newBooking),
+        }
+      );
     },
   });
 

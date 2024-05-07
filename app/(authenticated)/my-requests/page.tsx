@@ -21,19 +21,26 @@ const MyRequests = () => {
   } = useQuery<ApiResponse<IMyRequest[]>>({
     queryKey: ["requests"],
     queryFn: () =>
-      fetch("http://localhost:3000/api/requests").then((res) => res.json()),
+      fetch(
+        (process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000") +
+          "/api/requests"
+      ).then((res) => res.json()),
   });
   const queryClient = useQueryClient();
 
   const respondBookingMutation = useMutation({
     mutationFn: (respondBooking: IRespondBooking) => {
-      return fetch("http://localhost:3000/api/respond-booking", {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(respondBooking),
-      });
+      return fetch(
+        (process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000") +
+          "/api/respond-booking",
+        {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(respondBooking),
+        }
+      );
     },
   });
 

@@ -30,6 +30,7 @@ import { Tables } from "../../../database.types";
 const supabase = createClient();
 
 const MyBookings = () => {
+  
   const {
     data: bookings,
     error,
@@ -37,7 +38,10 @@ const MyBookings = () => {
   } = useQuery<ApiResponse<IMyBooking[]>>({
     queryKey: ["bookings"],
     queryFn: () =>
-      fetch("http://localhost:3000/api/bookings").then((res) => res.json()),
+      fetch(
+        (process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000") +
+          "/api/bookings"
+      ).then((res) => res.json()),
   });
 
   return (

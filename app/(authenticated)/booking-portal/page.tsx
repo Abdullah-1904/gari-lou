@@ -14,7 +14,10 @@ const BookingPortal = () => {
   >({
     queryKey: ["all-postings"],
     queryFn: () =>
-      fetch("http://localhost:3000/api/postings").then((res) => res.json()),
+      fetch(
+        (process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000") +
+          "/api/postings"
+      ).then((res) => res.json()),
   });
 
   const [modalState, setModalState] = React.useState<{
