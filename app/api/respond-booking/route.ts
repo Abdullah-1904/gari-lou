@@ -39,6 +39,20 @@ export async function PUT(request: Request) {
     })
     .eq("id", res?.post_id);
 
+  if (res?.action === "accepted") {
+    await fetch(
+      (process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000") +
+        "/api/send",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ email: res?.buyer_email }),
+      }
+    );
+  }
+
   const updateBookings = supabaseServiceRole
     .from("bookings")
     .update({

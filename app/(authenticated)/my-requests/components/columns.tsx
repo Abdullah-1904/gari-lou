@@ -116,6 +116,7 @@ export const getCols = ({
                       request_id: row?.original?.id,
                       seller_id: row?.original?.seller_id,
                       buyer_id: row?.original?.request_from_id,
+                      buyer_email: row?.original?.user?.email,
                     })
                   }>
                   Accept
@@ -154,6 +155,7 @@ export const getCols = ({
                       request_id: row?.original?.id,
                       seller_id: row?.original?.seller_id,
                       buyer_id: row?.original?.request_from_id,
+                      buyer_email: row?.original?.user?.email,
                     })
                   }>
                   Continue

@@ -20,6 +20,7 @@ export interface ICreateNewBooking {
 
 export interface IRespondBooking {
   request_id: number;
+  buyer_email: string;
   seller_id: string;
   buyer_id: string;
   action: "accepted" | "rejected";

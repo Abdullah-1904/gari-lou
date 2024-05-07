@@ -10,6 +10,7 @@ export default authMiddleware({
     "/booking_portal",
     "/api/handle-user",
     "/api/cities",
+    "/api/send",
   ],
 });
 
