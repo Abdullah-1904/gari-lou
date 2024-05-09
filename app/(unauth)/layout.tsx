@@ -6,11 +6,13 @@ import { RedirectToSignIn, SignedOut } from "@clerk/nextjs";
 const UnauthenticatedLayout = ({ children }) => {
   return (
     <>
-    {/* <SignedOut> */}
+      {/* <SignedOut> */}
       <Navbar />
-      <main className="max-w-[1200px] mx-auto">{children}</main>
+      <main className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+        {children}
+      </main>
       <Footer />
-    {/* </SignedOut> */}
+      {/* </SignedOut> */}
     </>
   );
 };
