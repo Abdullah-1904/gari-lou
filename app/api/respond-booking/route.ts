@@ -2,6 +2,9 @@ import { auth } from "@clerk/nextjs";
 import { supabaseServiceRole } from "../../../lib/supabase/supabaseClient";
 import { NextResponse } from "next/server";
 import { IRespondBooking } from "../../../types/common";
+import { EmailTemplate } from "../../../components/email-template";
+import { Resend } from "resend";
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function PUT(request: Request) {
   const { userId } = auth();
@@ -40,17 +43,23 @@ export async function PUT(request: Request) {
     .eq("id", res?.post_id);
 
   if (res?.action === "accepted") {
-    await fetch(
-      (process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000") +
-        "/api/send",
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ email: res?.buyer_email }),
-      }
-    );
+    // await fetch(
+    //   (process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000") +
+    //     "/api/send",
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-type": "application/json",
+    //     },
+    //     body: JSON.stringify({ email: res?.buyer_email }),
+    //   }
+    // );
+    const data = await resend.emails.send({
+      from: "Acme <onboarding@resend.dev>",
+      to: res?.buyer_email,
+      subject: "Hello world",
+      react: EmailTemplate({ email: "John" }),
+    });
   }
 
   const updateBookings = supabaseServiceRole
