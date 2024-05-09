@@ -57,7 +57,7 @@ export async function PUT(request: Request) {
     const data = await resend.emails.send({
       from: "Acme <onboarding@resend.dev>",
       to: res?.buyer_email,
-      subject: "Hello world",
+      subject: "Car Booking Confirmed",
       react: EmailTemplate({ email: "John" }),
     });
   }
