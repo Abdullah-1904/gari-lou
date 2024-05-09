@@ -14,7 +14,7 @@ import {
   ShoppingBasket,
 } from "lucide-react";
 import Image from "next/image";
-import LogoImage from "../public/logo.png";
+import LogoImage from "../public/logo1.png";
 import { SignOutButton } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";

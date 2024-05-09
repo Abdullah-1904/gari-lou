@@ -8,13 +8,13 @@ import {
   useAuth,
 } from "@clerk/nextjs";
 import Image from "next/image";
-import LogoImage from "../public/logo.png";
+import LogoImage from "../public/logo1.png";
 import { Button } from "./ui/button";
 
 const Navbar = () => {
   const { sessionId } = useAuth();
   return (
-    <div className="flex justify-between w-full py-4 px-6 items-center bg-background text-foreground sticky top-0 z-[10]">
+    <div className="flex justify-between bg-sky-50 w-full py-4 px-6 items-center bg-background text-foreground sticky top-0 z-[10]">
       {!sessionId && (
         <div className="flex items-center justify-start">
           <Link href="/">
@@ -28,9 +28,11 @@ const Navbar = () => {
       )}
       {!sessionId && (
         <div className="flex items-center justify-start gap-4">
-          <Link href="/about">About</Link>
-          <Link href="https://8c0061-06.myshopify.com/">E-Commerce</Link>
+          <div className="px-4">
+            <Link href="https://8c0061-06.myshopify.com/">E-Commerce</Link>
+          </div>
           <Link href="/howtobook">Guide</Link>
+          <Link href="/about">About</Link>
           <Link href="/booking_portal"></Link>
         </div>
       )}

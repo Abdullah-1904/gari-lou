@@ -186,8 +186,10 @@ const NewPostDialog = ({
   return (
     <Dialog onOpenChange={onChange} open={isOpen} modal defaultOpen={isOpen}>
       <DialogContent
-        className="max-w-[1000px] w-[1000px]"
-        style={{ maxWidth: "1000px", width: 1000 }}
+        // className="max-w-[1000px] w-[1000px]"
+        // style={{ maxWidth: "1000px", width: 1000 }}
+        className="w-full max-w-[95%] md:max-w-[750px] lg:max-w-[900px]"
+        style={{ maxWidth: "95%", width: "100%", margin: "auto" }}
       >
         <DialogHeader>
           <DialogTitle>Add a Posting</DialogTitle>
@@ -198,9 +200,10 @@ const NewPostDialog = ({
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="grid grid-cols-2 gap-4"
+            // className="grid grid-cols-2 gap-4"
+            className="grid grid-cols-1 md:grid-cols-2 gap-4"
           >
-            <div className="col-span-1">
+            <div className="col-span-2">
               <div className="grid grid-cols-2 gap-4">
                 <FormField
                   control={form.control}
@@ -232,7 +235,7 @@ const NewPostDialog = ({
                         />
                       </FormControl>
                       <FormDescription>
-                        Price per day in Ruppees PKR
+                        Rental Price per day in PKR
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -335,7 +338,7 @@ const NewPostDialog = ({
                       />
                     </FormControl>
                     <FormDescription>
-                      Price of your car in Ruppees
+                      Add a description of your car of atleast 10 characters
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
