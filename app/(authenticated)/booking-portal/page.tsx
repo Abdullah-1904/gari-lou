@@ -42,9 +42,10 @@ const BookingPortal = () => {
         Check out all the great bookings on Gari-Lou
       </p>
 
-      <BookingPortalSearch />
+      {/* <BookingPortalSearch /> */}
 
-      <div className="grid grid-cols-3 gap-6 mt-5">
+      {/* <div className="grid grid-cols-3 gap-6 mt-10"> */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 mt-10">
         {isLoading
           ? [0, 1, 2, 3, 4, 5].map((i) => (
               <Card key={i} className="col-span-1 animate-pulse">
@@ -64,6 +65,17 @@ const BookingPortal = () => {
                   </div>
                 </CardContent>
               </Card>
+              // <Card key={i} className="col-span-1 animate-pulse">
+              //   <CardHeader>
+              //     <div className="h-48 bg-slate-700 rounded-md"></div>
+              //   </CardHeader>
+              //   <CardContent>
+              //     <div className="space-y-6 py-1">
+              //       <div className="h-2 w-full bg-slate-700 rounded"></div>
+              //       <div className="h-2 w-3/4 bg-slate-700 rounded"></div>
+              //     </div>
+              //   </CardContent>
+              // </Card>
             ))
           : postings?.data?.map((post) => (
               <PostCard
