@@ -11,7 +11,6 @@ import {
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
 import { Delete, Eye, MoreHorizontal, PenBox } from "lucide-react";
-import { deletePosting } from "../../app/utils/function";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -23,7 +22,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
-import { useQueryClient } from "@tanstack/react-query";
 
 interface IMyPost {
   name: Tables<"postings">["name"];
@@ -33,8 +31,12 @@ interface IMyPost {
   is_booked: boolean;
   is_available: boolean;
 }
-
-export const columns: ColumnDef<IMyPost>[] = [
+interface IColumnProps {
+  deletePosting: (id: number) => void;
+}
+export const getCols = ({
+  deletePosting,
+}: IColumnProps): ColumnDef<IMyPost>[] => [
   {
     accessorKey: "name",
     header: "Name",
@@ -105,14 +107,8 @@ export const columns: ColumnDef<IMyPost>[] = [
                 <AlertDialogFooter>
                   <AlertDialogCancel>Cancel</AlertDialogCancel>
                   <AlertDialogAction
-                    onClick={() =>
-                      deletePosting(row?.original["id"]).then(
-                        async () => {}
-                        // await queryClient.invalidateQueries({
-                        //   queryKey: ["posts"],
-                        // })
-                      )
-                    }>
+                    onClick={() => deletePosting(row?.original["id"])}
+                  >
                     Continue
                   </AlertDialogAction>
                 </AlertDialogFooter>

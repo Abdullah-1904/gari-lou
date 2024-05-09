@@ -3,12 +3,13 @@ import React from "react";
 import { Button } from "../../../components/ui/button";
 import { Plus } from "lucide-react";
 import NewPostDialog from "../../../components/postings/new-post-dialog";
-import { columns } from "../../../components/postings/columns";
+import { getCols } from "../../../components/postings/columns";
 import MyPostingsTable from "../../../components/postings/my-postings-table";
 import { createClient } from "../../../lib/supabase/browserClient";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { cities } from "../../../constants/data";
 import { useAuth } from "@clerk/nextjs";
+import { deletePosting } from "../../utils/function";
 
 const supabase = createClient();
 
@@ -38,6 +39,18 @@ const MyPostings = () => {
     queryFn: () => fetchPosts(userId),
   });
 
+  const queryClient = useQueryClient();
+
+  const handleDeletePosting = async (id: number) => {
+    deletePosting(id).then(async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ["posts"],
+      });
+    });
+  };
+
+  const cols = getCols({ deletePosting: handleDeletePosting });
+
   return (
     <div>
       <div className="flex justify-between items-center">
@@ -54,7 +67,7 @@ const MyPostings = () => {
         </p>
         {
           <MyPostingsTable
-            columns={columns}
+            columns={cols}
             isLoading={isLoading}
             data={
               posts
