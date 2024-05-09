@@ -4,7 +4,8 @@ import { NextResponse } from "next/server";
 import { IRespondBooking } from "../../../types/common";
 import { EmailTemplate } from "../../../components/email-template";
 import { Resend } from "resend";
-const resend = new Resend(process.env.RESEND_API_KEY);
+// const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend("re_ZAn6mczg_5RjzkazarueYwUZFPH2mU9Jk");
 
 export async function PUT(request: Request) {
   const { userId } = auth();
