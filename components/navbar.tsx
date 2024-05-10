@@ -40,7 +40,7 @@ const Navbar = () => {
             href="https://8c0061-06.myshopify.com/"
             className="hover:text-indigo-500"
           >
-            Buy now
+            Car accessories
           </Link>
           <Link href="/howtobook" className="hover:text-indigo-500">
             Guide

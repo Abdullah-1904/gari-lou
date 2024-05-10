@@ -7,22 +7,18 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row md:justify-between">
           <div className="md:w-1/3">
             <h2 className="font-bold text-2xl">Gari Lou HQ</h2>
-            <p className="mt-2">KHI | LHR | ISB</p>
+            <p className="mt-2">Plot # 62, H-11/4, H-11, Islamabad</p>
           </div>
           <div className="md:w-1/3 mt-4 md:mt-0">
             <ul className="space-y-2">
               <li>
-                <h4 className="font-bold text-2xl">
-                  <a href="https://bic.edu.pk/">
-                    Beaconhouse International College
-                  </a>
-                </h4>
+                <h4 className="font-bold text-2xl">Our Presence</h4>
               </li>
-              <p className="mt-2">Plot # 62, H-11/4, H-11, Islamabad</p>
+              <p className="mt-2">KHI | LHR | ISB</p>
             </ul>
           </div>
           <div className="md:w-1/3 mt-4 md:mt-0">
-            <h2 className="font-bold text-2xl">Our Presence</h2>
+            <h2 className="font-bold text-2xl">Contact Us</h2>
             <p className="mt-2">
               <a
                 href="mailto:garilou.official@outlook.com"

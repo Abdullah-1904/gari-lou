@@ -20,21 +20,21 @@ const cards = [
     cardTitle: "Best Recommendations",
     description:
       "Discover the ideal vehicle for your needs with our personalized recommendations.\nOur advanced algorithm ensures Fast, Accurate and Reliable suggestions.",
-    tags: ["Fast", "Accurate", "Reliable"],
+    tags: ["fast", "accurate", "reliable"],
   },
   {
     image: CarListing,
     cardTitle: "The Complete List of Cars",
     description:
-      "Explore our extensive collection of cars, ranging from economy to luxury models \n Find the perfect match with our Complete, Accurate, and Extensive listings",
-    tags: ["Learn More", "Browse", "Explore"],
+      "Explore our extensive collection of cars, ranging from economy to luxury models \n Find the perfect match with our Complete, Accurate, and Extensive listings.",
+    tags: ["learn More", "browse", "explore"],
   },
   {
     image: CarRent,
     cardTitle: "Rent Out Your Car!",
     description:
-      "Earn more by money by renting out your car securely through our platform \n Enjoy a Safe, Secure, and Hassle-Free process with our comprehensive support",
-    tags: ["List Car", "Start Earning", "Hassle free"],
+      "Earn more money by renting out your car securely through our platform \n Enjoy a Safe, Secure, and Hassle-Free process with our extensive support.",
+    tags: ["list Car", "start Earning", "hassle free"],
   },
 ];
 
@@ -59,7 +59,7 @@ const Offerings = () => {
           <CardFooter className="flex justify-between">
             <Button variant="outline">Cancel</Button>
             <Button>
-              <Link href="/dashboard">View now !</Link>
+              <Link href="/dashboard">View now!</Link>
             </Button>
           </CardFooter>
         </Card>

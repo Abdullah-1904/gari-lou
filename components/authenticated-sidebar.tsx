@@ -89,16 +89,6 @@ const AuthenticatedSidebar = () => {
           My Requests
         </MenuItem>
 
-        {/* <MenuItem
-          icon={<LogOut />}
-          onClick={() => {
-            // Sign out and redirect
-            SignOutButton({ signOutCallback: () => router.push("../") });
-          }}
-        >
-          Log out
-        </MenuItem> */}
-
         <MenuItem
           icon={<LogOut />}
           onClick={() => {
