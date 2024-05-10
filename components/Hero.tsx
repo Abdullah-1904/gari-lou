@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
-const images = ["/hero2.jpg", "/hero3.jpg", "/hero4.jpg", "/hero6.jpg"]; // Replace with your image paths
+const images = [
+  "/hero2.jpg",
+  "/hero3.jpg",
+  "/hero4.jpg",
+  "/hero8.jpg",
+  "/hero9.jpg",
+  "/hero10.jpg",
+]; // Replace with your image paths
 
 export const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -16,12 +23,18 @@ export const Hero = () => {
   return (
     <div
       className="hero min-h-screen flex items-center justify-center"
-      style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
+      style={{
+        backgroundImage: `url(${images[currentImageIndex]})`,
+        backgroundSize: "cover", // Ensures the image covers the whole area
+        backgroundRepeat: "no-repeat", // Prevents the image from repeating
+      }}
     >
+      {/* ... (rest of your JSX) */}
+
       {/* <div className=" bg-opacity-60"></div> */}
       <div className=" text-center text-neutral-content">
         <div className="max-w-xl">
-          <h1 className="mb-5 text-5xl font-bold text-white ">
+          <h1 className="mb-5 mt-72 text-5xl font-bold text-white ">
             Welcome to Our Car Rental Service
           </h1>
           {/* <p className="mb-5" style={{ color: "white" }}>
@@ -30,7 +43,7 @@ export const Hero = () => {
             a id nisi.
           </p> */}
           <Button>
-            <Link href="/howtobook"> Get Started!</Link>
+            <Link href="/dashboard"> Get Started!</Link>
           </Button>
         </div>
       </div>

@@ -14,26 +14,40 @@ import { Button } from "./ui/button";
 const Navbar = () => {
   const { sessionId } = useAuth();
   return (
-    <div className="flex justify-between bg-sky-50 w-full py-4 px-6 items-center bg-background text-foreground sticky top-0 z-[10]">
+    <div className="flex justify-between bg-sky-50 w-full py-2 px-4 sm:py-4 sm:px-6 items-center bg-background text-foreground sticky top-0 z-[10]">
       {!sessionId && (
         <div className="flex items-center justify-start">
           <Link href="/">
-            <Image
-              className="h-10 w-10 object-contain"
-              alt="logo"
-              src={LogoImage}
-            />
+            <div className="block h-8 w-8 sm:h-10 sm:w-10">
+              <Image
+                className="h-10 w-10 object-contain"
+                alt="logo"
+                src={LogoImage}
+              />
+            </div>
           </Link>
         </div>
       )}
       {!sessionId && (
         <div className="flex items-center justify-start gap-4">
           <div className="px-4">
-            <Link href="/">Homepage</Link>
+            {/* <Link href="/">HomePage</Link> */}
+            <Link href="/" className="hover:text-indigo-500">
+              Homepage
+            </Link>
           </div>
-          <Link href="https://8c0061-06.myshopify.com/">Buy now</Link>
-          <Link href="/howtobook">Guide</Link>
-          <Link href="/about">About</Link>
+          <Link
+            href="https://8c0061-06.myshopify.com/"
+            className="hover:text-indigo-500"
+          >
+            Buy now
+          </Link>
+          <Link href="/howtobook" className="hover:text-indigo-500">
+            Guide
+          </Link>
+          <Link href="/about" className="hover:text-indigo-500">
+            About
+          </Link>
         </div>
       )}
       <div className="flex justify-end flex-grow items-center">

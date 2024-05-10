@@ -17,24 +17,24 @@ import Link from "next/link";
 const cards = [
   {
     image: "CarRecommendations",
-    cardTitle: "Best Car Recommendations",
+    cardTitle: "Best Recommendations",
     description:
       "Discover the ideal vehicle for your needs with our personalized recommendations.\nOur advanced algorithm ensures Fast, Accurate and Reliable suggestions.",
     tags: ["Fast", "Accurate", "Reliable"],
   },
   {
     image: CarListing,
-    cardTitle: "The Most Complete List of Cars",
+    cardTitle: "The Complete List of Cars",
     description:
       "Explore our extensive collection of cars, ranging from economy to luxury models \n Find the perfect match with our Complete, Accurate, and Extensive listings",
     tags: ["Learn More", "Browse", "Explore"],
   },
   {
     image: CarRent,
-    cardTitle: "Rent Your Car Out!",
+    cardTitle: "Rent Out Your Car!",
     description:
-      "Earn money by renting out your car securely through our platform \n Enjoy a Safe, Secure, and Hassle-Free process with our comprehensive support",
-    tags: ["List Your Car", "Start Earning", "Hassle free"],
+      "Earn more by money by renting out your car securely through our platform \n Enjoy a Safe, Secure, and Hassle-Free process with our comprehensive support",
+    tags: ["List Car", "Start Earning", "Hassle free"],
   },
 ];
 
@@ -45,7 +45,9 @@ const Offerings = () => {
         <Card key={card.cardTitle} className="w-[350px]">
           <CardHeader>
             <CardTitle>{card?.cardTitle}</CardTitle>
-            <CardDescription>{card?.description}</CardDescription>
+            <CardDescription className="text-justify">
+              {card?.description}
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex gap-4 item-center flex-wrap">
@@ -57,7 +59,7 @@ const Offerings = () => {
           <CardFooter className="flex justify-between">
             <Button variant="outline">Cancel</Button>
             <Button>
-              <Link href="/dashboard">Try out</Link>
+              <Link href="/dashboard">View now !</Link>
             </Button>
           </CardFooter>
         </Card>
