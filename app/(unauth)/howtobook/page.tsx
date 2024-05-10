@@ -88,9 +88,9 @@ const Page = () => {
                 <ol className="list-decimal space-y-4 pl-5">
                   <li>
                     <strong>Sign in:</strong> Access our website and click on
-                    the 'Sign in' button at the top right corner to log in with
-                    your credentials. If you're new, click 'Sign Up' to create
-                    an account.
+                    the &apos;Sign in&apos; button at the top right corner to
+                    log in with your credentials. If you&apos;re new, click
+                    &apos;Sign Up&apos; to create an account.
                     <div className="mt-2 flex justify-start">
                       <Image
                         src="/signinbutton.png"
@@ -102,8 +102,8 @@ const Page = () => {
                   </li>
                   <li>
                     <strong>Navigate to My Postings:</strong> Once logged in,
-                    find the 'My Postings' section in the dashboard to view and
-                    manage your postings.
+                    find the &apos;My Postings&apos; section in the dashboard to
+                    view and manage your postings.
                     <div className="mt-2 flex justify-start">
                       <Image
                         src="/dashboard.png"
@@ -114,8 +114,9 @@ const Page = () => {
                     </div>
                   </li>
                   <li>
-                    <strong>Create a New Posting:</strong> In 'My Postings',
-                    click the 'New Posting' button to start listing your car.
+                    <strong>Create a New Posting:</strong> In &apos;My
+                    Postings&apos;, click the &apos;New Posting&apos; button to
+                    start listing your car.
                     <div className="mt-2 flex justify-start">
                       <Image
                         src="/newposting.png"
@@ -127,8 +128,8 @@ const Page = () => {
                   </li>
                   <li>
                     <strong>Add Car Information:</strong> Complete the form with
-                    your car's details, such as make, model, year, and rental
-                    price.
+                    your car&apos;s details, such as make, model, year, and
+                    rental price.
                     <div className="mt-2 flex justify-start">
                       <Image
                         src="/form.png"
@@ -140,7 +141,8 @@ const Page = () => {
                   </li>
                   <li>
                     <strong>Submit Your Posting:</strong> Review the information
-                    and hit 'Create' to add your car to the rental listings.
+                    and hit &apos;Create&apos; to add your car to the rental
+                    listings.
                     <div className="mt-2 flex justify-start">
                       <Image
                         src="/create.png"
