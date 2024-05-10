@@ -29,11 +29,11 @@ const Navbar = () => {
       {!sessionId && (
         <div className="flex items-center justify-start gap-4">
           <div className="px-4">
-            <Link href="https://8c0061-06.myshopify.com/">Buy now</Link>
+            <Link href="/">Homepage</Link>
           </div>
+          <Link href="https://8c0061-06.myshopify.com/">Buy now</Link>
           <Link href="/howtobook">Guide</Link>
           <Link href="/about">About</Link>
-          <Link href="/booking_portal"></Link>
         </div>
       )}
       <div className="flex justify-end flex-grow items-center">

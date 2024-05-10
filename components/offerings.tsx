@@ -12,25 +12,29 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Badge } from "./ui/badge";
+import Link from "next/link";
 
 const cards = [
   {
-    image: CarRecommendations,
-    cardTitle: "Best Car recommendations",
-    description: "We provide you with the eye catching web application",
+    image: "CarRecommendations",
+    cardTitle: "Best Car Recommendations",
+    description:
+      "Discover the ideal vehicle for your needs with our personalized recommendations.\nOur advanced algorithm ensures Fast, Accurate and Reliable suggestions.",
     tags: ["Fast", "Accurate", "Reliable"],
   },
   {
     image: CarListing,
-    cardTitle: "The most complete list of cars",
-    description: "add bullshit here",
-    tags: ["Complete", "Accurate", "Extensive"],
+    cardTitle: "The Most Complete List of Cars",
+    description:
+      "Explore our extensive collection of cars, ranging from economy to luxury models \n Find the perfect match with our Complete, Accurate, and Extensive listings",
+    tags: ["Learn More", "Browse", "Explore"],
   },
   {
     image: CarRent,
-    cardTitle: "Rent your car out!",
-    description: "add bullshit here",
-    tags: ["Safe", "Secure", "Hassle free"],
+    cardTitle: "Rent Your Car Out!",
+    description:
+      "Earn money by renting out your car securely through our platform \n Enjoy a Safe, Secure, and Hassle-Free process with our comprehensive support",
+    tags: ["List Your Car", "Start Earning", "Hassle free"],
   },
 ];
 
@@ -52,7 +56,9 @@ const Offerings = () => {
           </CardContent>
           <CardFooter className="flex justify-between">
             <Button variant="outline">Cancel</Button>
-            <Button>Deploy</Button>
+            <Button>
+              <Link href="/dashboard">Try out</Link>
+            </Button>
           </CardFooter>
         </Card>
       ))}
